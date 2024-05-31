@@ -1,0 +1,19 @@
+{
+  "name": "prueba-master",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "watch": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.6",
+    "debug": "~4.3.4",
+    "express": "~4.19.2",
+    "http-errors": "~2.0.0",
+    "morgan": "~1.10.0",
+    "@octokit/rest": "20.1.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

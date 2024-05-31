@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  prueba_master:
+    container_name: 'PruebaMaster'
+    build:
+      context: .
+    volumes:
+      - ..:/home/volume
+      - prueba-master-bashhistory:/commandhistory
+    working_dir: /home/volume
+    restart: unless-stopped
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
+
+volumes:
+  prueba-master-bashhistory:
