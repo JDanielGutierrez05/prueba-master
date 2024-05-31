@@ -9,22 +9,11 @@ const { Octokit } = require('@octokit/rest')
  *   get:
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: private
- *         in: path
- *         required: false
- *         type: string
- *         description: Defines if show or not the public elements on movies collection
- *       - in: header
- *         name: Authorization
- *         description: Bearer token in the format "{token}"
- *         required: true
- *         schema:
- *           type: string
- *           format: JWT
  *     responses:
  *       200:
  *         description: Successful
+ *       500:
+ *         description: Rate Limit Exceeded
  */
 router.get('/', async function (req, res, next) {
   try {

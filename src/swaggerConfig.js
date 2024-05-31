@@ -9,7 +9,7 @@ const options = {
       description: 'By Juan Daniel Gutierrez Botero',
     },
   },
-  apis: ['./routes/*.js'],
+  apis: ['./src/routes/*.js'],
 }
 
 const swaggerSpec = swaggerJsdoc(options)
