@@ -1,12 +1,12 @@
 version: '3.8'
 services:
-  prueba_master:
-    container_name: 'PruebaMaster'
+  test_master:
+    container_name: 'TestMaster'
     build:
       context: .
     volumes:
       - ..:/home/volume
-      - prueba-master-bashhistory:/commandhistory
+      - test-master-bashhistory:/commandhistory
     working_dir: /home/volume
     restart: unless-stopped
     command:
@@ -15,4 +15,4 @@ services:
       - sleep infinity
 
 volumes:
-  prueba-master-bashhistory:
+  test-master-bashhistory:

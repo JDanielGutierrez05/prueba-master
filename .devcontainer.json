@@ -1,7 +1,7 @@
 {
-  "name": "prueba-master",
+  "name": "test-master",
   "dockerComposeFile": ".docker/docker-compose.yml",
-  "service": "prueba_master",
+  "service": "test_master",
   "workspaceFolder": "/home/volume",
   "customizations": {
     "vscode": {

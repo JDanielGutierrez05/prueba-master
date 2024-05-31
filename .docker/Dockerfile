@@ -1,7 +1,7 @@
 FROM node:22-bullseye-slim
 
 # Arguments
-ARG USER=pruebamaster
+ARG USER=testmaster
 ARG USER_HOME=/home/$USER
 ARG VOLUME=/home/volume
 ARG SHELL=/bin/bash

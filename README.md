@@ -4,6 +4,7 @@
   - [Summary](#summary)
     - [Development container](#development-container)
     - [Note](#note)
+    - [Swagger](#swagger)
   - [Glossary](#glossary)
     - [Petitions examples on Curl format](#petitions-examples-on-curl-format)
 
@@ -11,7 +12,7 @@
 
 ## Summary
 
-`Prueba Master` this is a challenge.
+`Test Master` this is a challenge.
 
 ---
 
@@ -28,6 +29,12 @@ This steps are tailored to work with Visual Studio Code, but you are free to cho
 ### Note
 
 If your prefer to not install all tools mentioned on the previous steps, just open a terminal into the project folder and execute the command in 5 step (Need Nodejs v18 or higher).
+
+---
+
+### Swagger
+
+To see swagger documentation, [run the app](#development-container) and open this route `/api-docs/` in a browser to see all the apis with it's information.
 
 ---
 
