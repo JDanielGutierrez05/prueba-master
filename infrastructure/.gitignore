@@ -1,0 +1,6 @@
+*.serverless
+*.vscode
+*.DS_Store
+.ssh
+tmp/
+customlib/
