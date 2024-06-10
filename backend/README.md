@@ -56,6 +56,8 @@ To rollback database migrations, run `database/migrations/migrate.sh --rollback`
 
 To add a new migration step yo need to modify `database/migrations/Migration.js` file.
 
+Note: If the script show an error about permissions, execute this command `chmod +x database/migrations/migrate.sh`.
+
 ### Deployment
 
 You can deploy `Cloud Formation Stacks` using `Serverless Framework` syntax: <https://www.serverless.com/framework/docs/providers/aws/cli-reference/deploy/>
