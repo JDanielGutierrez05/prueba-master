@@ -94,6 +94,20 @@ Stacks are independent, but still, recommended remove order is inverse to deploy
 ### Service environment variables: `.envs/config.env` ###
 
 - `DEVELOPER`: Same username as you corporate email without domain part. It's used to guarantee some unique resource names at deploy
+- `RDS_PORT`: RDS DB instance port.
+- `RDS_MASTER_USER`: `Test2` Mysql cluster master username you created in step 1 of [Deployment](#deployment).
+- `RDS_APP_USER`: `Test2` Mysql cluster app username you created in step 1 of [Deployment](#deployment).
+- `RDS_SNAPSHOT_ARN`  (_Optional_): ARN of replica cluster, this one its optional.
+
+Example:
+
+```env
+DEVELOPER=test2
+RDS_PORT=3306
+RDS_MASTER_USER=master
+RDS_APP_USER=test2
+RDS_SNAPSHOT_ARN=
+```
 
 ### Serverless Framework deployment variables ###
 
