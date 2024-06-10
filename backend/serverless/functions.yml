@@ -5,3 +5,11 @@ FilterAndTransformData:
       - ../src/functions/FilterAndTransformData.js
   role: !GetAtt FilterAndTransformDataRole.Arn
   handler: src/functions/FilterAndTransformData.handler
+
+OrderTuples:
+  name: ${self:custom.servicePrefix}-OrderTuples
+  package:
+    patterns:
+      - ../src/functions/OrderTuples.js
+  role: !GetAtt OrderTuplesRole.Arn
+  handler: src/functions/OrderTuples.handler
