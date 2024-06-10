@@ -12,8 +12,6 @@ provider:
   memorySize: 128
   runtime: nodejs20.x
   timeout: 30
-  # environment:
-  #   DB_CONNECTION_DATA: ${self:custom.secretsManager.databaseConnection}
   versionFunctions: false
   logRetentionInDays: ${self:custom.lambda.logRetentionInDays.${self:custom.stage}}
 
@@ -61,3 +59,7 @@ custom:
   lambda:
     logRetentionInDays:
       dev: 1
+    layers:
+      nodejs:
+        mysql:
+          arn: ${ssm:/test2-nodejs-mysql/LayerArn}

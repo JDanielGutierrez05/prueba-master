@@ -48,11 +48,6 @@ You need these `Cloud Formation Stacks` deployed:
 
 Those stacks deploy, among other resources, some parameters at `SSM Parameter Store`. You can also choose to manually configure those parameters instead of deploying the stacks. To learn more about the parameters you'll need to read the docs of the corresponding dependency.
 
-Lambda Layers packages:
-
-- `Library > Lambda Layers > Node.js > Commons` [repository](https://gitlab.com/azimut-energia/library/lambda-layers/nodejs/commons/-/tree/master) distribution
-- `Library > Lambda Layers > Node.js > MongoDB` [repository](https://gitlab.com/azimut-energia/library/lambda-layers/nodejs/mongodb/-/tree/master) distribution
-
 ### Database migrations
 
 To apply pending database migrations, run `database/migrations/migrate.sh`.
@@ -68,7 +63,8 @@ You can deploy `Cloud Formation Stacks` using `Serverless Framework` syntax: <ht
 Deployment order:
 
 1. [Apply database migrations](#database-migrations)
-2. Deploy `serverless` stack
+2. Deploy `lambda-layers/mysql` stack
+3. Deploy `serverless` stack
 
 ### Remove
 
