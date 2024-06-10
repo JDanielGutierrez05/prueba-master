@@ -22,8 +22,13 @@ RUN pip3 install --upgrade pip
 RUN apt-get install -y pylint3
 RUN pip3 install cfn-lint cfn-lint-serverless
 
+# Install Database utilities
+RUN pip3 install yoyo-migrations pymysql
+
 # Install CLI utilities
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+# Using this line to install on computers with x86_64 processors
+# RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install \
     && apt-get install -y less

@@ -6,6 +6,7 @@
     - [Development container](#development-container)
     - [Environment variables](#environment-variables)
     - [Dependencies](#dependencies)
+    - [Database migrations](#database-migrations)
     - [Deployment](#deployment)
     - [Remove](#remove)
   - [Contribution guidelines](#contribution-guidelines)
@@ -41,6 +42,16 @@ At `.envs` folder, you'll need to create env files with the variables described 
 
 `serverless` user must be created using `IAM` at `AWS Organization account`, and it's credentials configured in `.envs/aws.env`.
 
+### Database migrations ###
+
+To apply pending database migrations, run `database/migrations/migrate.sh`.
+
+To rollback database migrations, run `database/migrations/migrate.sh --rollback`.
+
+To add a new migration step yo need to modify `database/migrations/Migration.sh` file.
+
+Note: If the script show an error about permissions, execute this command `chmod +x database/migrations/migrate.sh`.
+
 ### Deployment ###
 
 You can deploy `Cloud Formation Stacks` using `Serverless Framework` syntax: <https://www.serverless.com/framework/docs/providers/aws/cli-reference/deploy/>
@@ -48,6 +59,7 @@ You can deploy `Cloud Formation Stacks` using `Serverless Framework` syntax: <ht
 Deployment order:
 
 1. Deploy `serverless` stack
+2. [Apply database migrations](#database-migrations)
 
 ### Remove ###
 
