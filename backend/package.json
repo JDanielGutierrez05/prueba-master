@@ -1,0 +1,10 @@
+{
+  "name": "test2-backend",
+  "main": "index.js",
+  "scripts": {
+    "deploy-backend": "cd serverless && sls deploy",
+    "remove-backend": "cd serverless && sls remove"
+  },
+  "devDependencies": {
+  }
+}

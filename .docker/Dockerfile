@@ -57,3 +57,7 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
 ######## INFRASTRUCTURE IMAGE ########
 FROM img-base AS img-infrastructure
 USER $USER
+
+######## BACKEND IMAGE ########
+FROM img-base AS img-backend
+USER $USER

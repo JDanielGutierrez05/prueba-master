@@ -1,0 +1,7 @@
+FilterAndTransformData:
+  name: ${self:custom.servicePrefix}-FilterAndTransformData
+  package:
+    patterns:
+      - ../src/functions/FilterAndTransformData.js
+  role: !GetAtt FilterAndTransformDataRole.Arn
+  handler: src/functions/FilterAndTransformData.handler
