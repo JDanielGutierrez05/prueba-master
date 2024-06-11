@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  test2_backend:
+    container_name: 'Test2Backend'
+    build:
+      context: .
+      dockerfile: ../../.docker/Dockerfile
+      target: img-backend
+    volumes:
+      - ../..:/app
+      - test2-backend-bashhistory:/commandhistory
+    env_file:
+      - ../../.envs/aws.env
+      - ../../.envs/sls.env
+    environment:
+      - DEPLOY_APP=test2
+    working_dir: /app/backend
+    restart: unless-stopped
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
+
+volumes:
+  test2-backend-bashhistory:

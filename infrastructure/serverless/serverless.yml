@@ -56,7 +56,6 @@ custom:
     - safeguard: no-wild-iam-role-statements
       enforcementLevel: warning
   servicePrefix: ${self:app}-${self:service}
-  developer: ${env:DEVELOPER}
   s3:
     deploymentBucketName:
       dev: ${self:provider.region}.${self:org}.${self:app}.${self:custom.stage}.deploys

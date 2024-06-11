@@ -9,12 +9,13 @@
   - [Glossary](#glossary)
     - [AWS environment variables: `.envs/aws.env`](#aws-environment-variables-envsawsenv)
     - [Serverless Framework environment variables: `.envs/sls.env`](#serverless-framework-environment-variables-envsslsenv)
+    - [Project Distribution](#project-distribution)
 
 ---
 
 ## Summary
 
-`Test2` repository contains all necessary cloud resources to deploy infrastructure for service to run.
+`Test2 Master` repository contains all necessary cloud resources to deploy infrastructure for service to run.
 These resources are created as `Infrastructure as Code` and deployed using `Serverless Framework`.
 
 ---
@@ -31,8 +32,10 @@ Need to create an acoount in `https://www.serverless.com` and generate access ke
 
 This steps are tailored to work with Visual Studio Code, but you are free to chose a different IDE and make necessary adjustments to the setup.
 
-1. Install `ms-vscode-remote.remote-containers` extension. If you don't know how to do that follow this steps: <https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension>
-2. Open this project's folder in Visual Studio Code. The extension will detect a container configuration and will ask you if you want to reopen the project un the container. Accept.
+1. Install Visual Studio Code [here](https://code.visualstudio.com/)
+2. Install Docker desktop [here](https://code.visualstudio.com/)
+3. Install `ms-vscode-remote.remote-containers` extension. If you don't know how to do that follow this steps: <https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension>
+4. Open this project's folder in Visual Studio Code. The extension will detect a container configuration and will ask you if you want to reopen the project un the container. Accept. (Those steps are mandatory this time.)
 
 ### Environment variables
 
@@ -67,3 +70,12 @@ Example:
 ```env
 SERVERLESS_ACCESS_KEY=abcd00000000adsasd
 ```
+
+### Project Distribution
+
+1. the first part cover Sections 1 and 3 of the PDF (All lambdas including others services deployments but needs some manual steps like create aws account, create serverless user, assign programatic keys and create serverless account and generate access key), you can follow the steps in ther respective readme.
+
+- [Infrastructure](infrastructure/README.md)
+- [Backend](backend/README.md)
+
+1. the second part cover Section 2 of the PDF, its only a folder called database in the root of the repository with 3 sql files, one of them is the query, the other two are the files with the data that i used to test the script.
