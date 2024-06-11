@@ -35,7 +35,8 @@ This steps are tailored to work with Visual Studio Code, but you are free to cho
 1. Install Visual Studio Code [here](https://code.visualstudio.com/)
 2. Install Docker desktop [here](https://code.visualstudio.com/)
 3. Install `ms-vscode-remote.remote-containers` extension. If you don't know how to do that follow this steps: <https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension>
-4. Open this project's folder in Visual Studio Code. The extension will detect a container configuration and will ask you if you want to reopen the project un the container. Accept. (Those steps are mandatory this time.)
+4. Before open the container in visual studio check if your processor is x86-x64 or ARM and enable it on docker compose (Line 30 or 31) to install the aws cli compatible version. [Dockerfile](.docker/Dockerfile)
+5. Open this project's folder in Visual Studio Code. The extension will detect a container configuration and will ask you if you want to reopen the project un the container. Accept. (Those steps are mandatory this time.)
 
 ### Environment variables
 
