@@ -1,0 +1,9 @@
+{
+  "name": "test2-lambda-layers-mysql",
+  "description": "Provides mysql library",
+  "author": "Juan Daniel Gutierrez",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.10.0"
+  }
+}

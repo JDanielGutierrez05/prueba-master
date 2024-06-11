@@ -4,3 +4,4 @@
 .ssh
 tmp/
 customlib/
+__pycache__

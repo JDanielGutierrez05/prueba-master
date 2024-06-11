@@ -1,0 +1,15 @@
+{
+  "name": "test2-backend",
+  "main": "index.js",
+  "scripts": {
+    "deploy-backend": "cd serverless && sls deploy && cd ..",
+    "deploy-lambda-layer": "cd lambda-layers/mysql && sls deploy && cd ..",
+    "remove-backend": "cd serverless && sls remove"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.592.0",
+    "@aws-sdk/client-ssm": "^3.592.0",
+    "aws-sdk": "^2.1638.0",
+    "mysql2": "^3.10.0"
+  }
+}
