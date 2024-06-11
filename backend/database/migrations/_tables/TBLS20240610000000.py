@@ -19,15 +19,15 @@ def apply_step(conn):
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS {} (
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            id INT PRIMARY KEY,
             name VARCHAR(100),
-            category VARCHAR(100)
+            price INT
         );
     '''.format(PRODUCTS_TABLE))
     
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS {} (
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            id INT PRIMARY KEY,
             product_id INT,
             date DATE,
             quantity INT,

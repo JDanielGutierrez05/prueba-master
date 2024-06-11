@@ -21,6 +21,7 @@ GetDataFromDB:
       - ../src/functions/GetDataFromDB.js
       - ../src/repositories/Connection.js
       - ../src/repositories/Products.js
+      - ../src/repositories/Sales.js
       - ../src/services/SecretsManager.js
   role: !GetAtt GetDataFromDBRole.Arn
   handler: src/functions/GetDataFromDB.handler

@@ -7,13 +7,13 @@
     - [Environment variables](#environment-variables)
     - [Dependencies](#dependencies)
     - [Database migrations](#database-migrations)
+    - [Database seeding](#database-seeding)
     - [Deployment](#deployment)
     - [Remove](#remove)
   - [Contribution guidelines](#contribution-guidelines)
     - [Code review](#code-review)
     - [Other guidelines](#other-guidelines)
   - [Glossary](#glossary)
-    - [Service environment variables: `.envs/config.env`](#service-environment-variables-envsconfigenv)
     - [Serverless Framework deployment variables](#serverless-framework-deployment-variables)
 
 ---
@@ -58,6 +58,14 @@ To add a new migration step yo need to modify `database/migrations/Migration.js`
 
 Note: If the script show an error about permissions, execute this command `chmod +x database/migrations/migrate.sh`.
 
+### Database seeding
+
+First, to install dependencies required by seeding scripts run `npm i`.
+
+To run seeders, execute `node database/seeders/seed.sh`.
+
+Only `dev` and `test` environments are allowed to execute seeders, any other environment will skip this process even if accidentally executed.
+
 ### Deployment
 
 You can deploy `Cloud Formation Stacks` using `Serverless Framework` syntax: <https://www.serverless.com/framework/docs/providers/aws/cli-reference/deploy/>
@@ -65,8 +73,9 @@ You can deploy `Cloud Formation Stacks` using `Serverless Framework` syntax: <ht
 Deployment order:
 
 1. [Apply database migrations](#database-migrations)
-2. Deploy `lambda-layers/mysql` stack
-3. Deploy `serverless` stack
+2. [Apply database seeders](#database-seeding)
+3. Deploy `lambda-layers/mysql` stack using this command on terminal `npm run deploy-lambda-layer`
+4. Deploy `serverless` stack using this command on terminal `deploy-backend`
 
 ### Remove
 
@@ -97,10 +106,6 @@ Stacks are independent, but still, recommended remove order is inverse to deploy
 ---
 
 ## Glossary
-
-### Service environment variables: `.envs/config.env`
-
-- `DEVELOPER`: Same username as you corporate email without domain part. It's used to guarantee some unique resource names at deploy
 
 ### Serverless Framework deployment variables
 
