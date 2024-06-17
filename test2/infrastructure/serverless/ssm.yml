@@ -1,0 +1,8 @@
+Resources:
+  DatabaseMasterSecretArn:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub /${self:custom.servicePrefix}/MasterSecretArn
+      Tier: Standard
+      Type: String
+      Value: !GetAtt Database.MasterUserSecret.SecretArn

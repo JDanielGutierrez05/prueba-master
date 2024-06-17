@@ -1,0 +1,19 @@
+{
+  "name": "test2master",
+  "dockerComposeFile": ".docker/docker-compose.yml",
+  "service": "test2master",
+  "workspaceFolder": "/app",  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "george-alisson.html-preview-vscode",
+        "github.copilot",
+        "irongeek.vscode-env",
+        "ms-azuretools.vscode-docker",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
+  }
+}

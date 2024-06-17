@@ -1,0 +1,3 @@
+Conditions:
+
+  IsUsingDBSnapshot: !Not [!Equals ['${self:custom.rds.snapshotArn}', '']]

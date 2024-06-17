@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  test2_infrastructure:
+    container_name: 'Test2Infrastructure'
+    build:
+      context: .
+      dockerfile: ../../.docker/Dockerfile
+      target: img-infrastructure
+    volumes:
+      - ../..:/app
+      - test2-infrastructure-bashhistory:/commandhistory
+    env_file:
+      - ../../.envs/aws.env
+      - ../../.envs/sls.env
+      - ../.envs/config.env
+    environment:
+      - DEPLOY_APP=test2
+    working_dir: /app/infrastructure
+    restart: unless-stopped
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
+
+volumes:
+  test2-infrastructure-bashhistory:

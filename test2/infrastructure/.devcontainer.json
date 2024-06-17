@@ -1,0 +1,95 @@
+{
+  "name": "test2-infrastructure",
+  "dockerComposeFile": ".docker/docker-compose.yml",
+  "service": "test2_infrastructure",
+  "workspaceFolder": "/app/infrastructure",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "aaron-bond.better-comments",
+        "davidanson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "github.copilot",
+        "gruntfuggly.todo-tree",
+        "irongeek.vscode-env",
+        "micnil.vscode-checkpoints",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.live-server",
+        "ms-python.pylint",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-spanish",
+        "threadheap.serverless-ide-vscode",
+        "tonybaloney.vscode-pets",
+        "ty4z2008.html-preview",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "editor.codeActionsOnSave": {
+          "source.fixAll.markdownlint": true,
+          "source.organizeImports": true
+        },
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "cSpell.files": [
+          "**/*.md",
+          "**/*.py"
+        ],
+        "cSpell.language": "en,es",
+        "cSpell.languageSettings": [
+          {
+            "languageId": "python",
+            "ignoreRegExpList": [
+              "/^\\s*from.*import/gm" // Ignore imports
+            ]
+          }
+        ],
+        "cSpell.words": [
+          "customlib",
+          "Dockerized",
+        ],
+        "git.autoRepositoryDetection": true,
+        "git.openRepositoryInParentFolders": "always",
+        "markdownlint.config": {
+          "default": true,
+          "MD003": {
+            "style": "atx_closed"
+          },
+          "MD024": false
+        },
+        "[markdown]": {
+          "editor.defaultFormatter": "davidanson.vscode-markdownlint"
+        },
+        "python.analysis.typeCheckingMode": "basic",
+        "python.formatting.yapfPath": "/usr/local/bin/yapf",
+        "python.formatting.yapfArgs": [
+          "--style",
+          "{based_on_style: pep8, force_multiline_dict: true, indent_dictionary_value: true, column_limit: 80}"
+        ],
+        "python.formatting.provider": "yapf",
+        "pylint.args": [
+          "--enable=W0611",
+          "--disable=C0111,C0411,W0703"
+        ],
+        "[python]": {
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          }
+        },
+        "serverlessIDE.cfnLint.path": "/usr/local/bin/cfn-lint",
+        "serverlessIDE.cfnLint.appendRules": [
+          "cfn_lint_serverless.rules"
+        ],
+        "serverlessIDE.completion": true,
+        "serverlessIDE.hover": true,
+        "serverlessIDE.telemetry.enableTelemetry": false,
+        "serverlessIDE.validate": true,
+        "serverlessIDE.validationProvider": "cfn-lint",
+        "todo-tree.highlights.useColourScheme": true
+      }
+    }
+  },
+  "postCreateCommand": "chmod +x .docker/entrypoint.sh && .docker/entrypoint.sh"
+}

@@ -1,0 +1,72 @@
+Resources:
+
+  DatabaseParameterGroup:
+    Type: AWS::RDS::DBParameterGroup
+    Properties:
+      Description: ${self:custom.servicePrefix}-DatabaseParameterGroup
+      Family: mysql8.0
+
+  Database:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      AllocatedStorage: !If
+        - IsUsingDBSnapshot
+        - !Ref AWS::NoValue
+        - 5
+      AllowMajorVersionUpgrade: true
+      BackupRetentionPeriod: !If
+        - IsUsingDBSnapshot
+        - !Ref AWS::NoValue
+        - 0
+      DBInstanceClass: db.t3.micro
+      DBName: !If
+        - IsUsingDBSnapshot
+        - !Ref AWS::NoValue
+        - ${self:custom.rds.database}
+      DBParameterGroupName: !Ref DatabaseParameterGroup
+      DBSnapshotIdentifier: !If
+        - IsUsingDBSnapshot
+        - ${self:custom.rds.snapshotArn}
+        - !Ref AWS::NoValue
+      DeletionProtection: false
+      Engine: mysql
+      EngineVersion:  !If
+        - IsUsingDBSnapshot
+        - !Ref AWS::NoValue
+        - 8.0.36
+      ManageMasterUserPassword: true
+      MasterUsername: !If
+        - IsUsingDBSnapshot
+        - !Ref AWS::NoValue
+        - ${self:custom.rds.masterUsername}
+      MultiAZ: false
+      Port: ${self:custom.rds.port}
+      PreferredMaintenanceWindow: !If
+        - IsUsingDBSnapshot
+        - !Ref AWS::NoValue
+        - Sun:07:00-Sun:07:30
+      PubliclyAccessible: true
+      StorageType: standard
+      VPCSecurityGroups:
+        - !GetAtt DatabaseSecurityGroup.GroupId
+
+  DatabaseSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: ${self:custom.servicePrefix}-DatabaseSecurityGroup
+      GroupDescription: ${self:custom.servicePrefix}
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: ${env:RDS_PORT}
+          ToPort: ${env:RDS_PORT}
+          CidrIp: 0.0.0.0/0
+
+  DatabaseSecurityGroupId:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub /${self:custom.servicePrefix}/DatabaseSecurityGroupId
+      Tier: Standard
+      Type: String
+      Value: !GetAtt DatabaseSecurityGroup.GroupId
