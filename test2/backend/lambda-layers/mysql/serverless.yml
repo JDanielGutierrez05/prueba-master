@@ -1,0 +1,51 @@
+org: test2master
+app: test2
+service: nodejs-mysql
+frameworkVersion: ^3.38.0
+configValidationMode: error
+
+provider:
+  name: aws
+  stage: dev
+  region: us-east-1
+  stackName: ${self:app}-${self:service}
+  deploymentBucket:
+    name: ${self:custom.s3.deploymentBucketName.${self:custom.stage}}
+
+plugins:
+  - serverless-deployment-bucket
+  - '@serverless/safeguards-plugin'
+
+layers:
+  Mysql:
+    name: ${self:custom.servicePrefix}-Mysql
+    package:
+      patterns:
+        - '!./**'
+        - nodejs/**
+    path: ./
+
+resources:
+  Resources:
+    LayerArn:
+      Type: AWS::SSM::Parameter
+      Properties:
+        Name: !Sub /${AWS::StackName}/LayerArn
+        Tier: Standard
+        Type: String
+        Value: !Ref MysqlLambdaLayer
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  safeguards:
+    - safeguard: framework-version
+      enforcementLevel: warning
+      config: ${self:frameworkVersion}
+    - safeguard: allowed-regions
+      enforcementLevel: error
+      config:
+        - ${self:provider.region}
+  servicePrefix: ${self:app}-${self:service}
+  s3:
+    deploymentBucketName:
+      dev: ${self:provider.region}.test2.llyrs.deploys
