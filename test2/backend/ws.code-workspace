@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "/app/backend",
+      "name": "[✪] Project"
+    },
+    {
+      "path": "/app/.docker",
+      "name": "[⛭] Parent's .docker"
+    },
+    {
+      "path": "/app/.envs",
+      "name": "[⛭] Parent's .envs"
+    }
+  ],
+  "settings": {}
+}

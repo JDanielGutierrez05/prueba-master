@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  test2master:
+    container_name: 'Test2Master'
+    build:
+      context: .
+    volumes:
+      - ..:/app
+      - test2-master-bashhistory:/commandhistory
+    working_dir: /app
+    restart: unless-stopped
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
+
+volumes:
+  test2-master-bashhistory:

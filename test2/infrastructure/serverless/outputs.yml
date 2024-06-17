@@ -1,0 +1,9 @@
+Outputs:
+  DatabaseEndpoint:
+    Value: !GetAtt Database.Endpoint.Address
+    Export:
+      Name: ${self:custom.servicePrefix}-DatabaseEndpoint
+  DatabasePort:
+    Value: !GetAtt Database.Endpoint.Port
+    Export:
+      Name: ${self:custom.servicePrefix}-DatabasePort

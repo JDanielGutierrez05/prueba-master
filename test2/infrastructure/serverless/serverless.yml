@@ -1,0 +1,69 @@
+# Useful example for Secrets Manager rotation: https://candrews.integralblue.com/2019/10/aws-secrets-manager-rotation-in-cloudformation/
+# Useful example for Session Manager access: https://nullsweep.com/a-better-way-to-ssh-in-aws/
+# Notorious issue related to instance storage allocation: https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/430
+
+org: test2master
+app: test2
+service: infrastructure
+frameworkVersion: ^3.38.0
+configValidationMode: error
+
+provider:
+  name: aws
+  stage: dev
+  region: us-east-1
+  stackName: ${self:app}-${self:service}
+  stackPolicy:
+    - Effect: Allow
+      Principal: '*'
+      Action: Update:*
+      Resource: '*'
+    # Disable this rule and deploy if you want to allow the stack to delete/replace de database cluster for whatever reason
+    - Effect: Deny
+      Principal: '*'
+      Resource: '*'
+      Action:
+        - Update:Replace
+        - Update:Delete
+      Condition:
+        StringEquals:
+          ResourceType:
+            - AWS::RDS::DBInstance
+  deploymentBucket:
+    name: ${self:custom.s3.deploymentBucketName.${self:custom.stage}}
+
+resources:
+  - ${file(rds/${self:custom.stage}.yml)}
+  - ${file(conditions.yml)}
+  - ${file(secrets-manager.yml)}
+  - ${file(ssm.yml)}
+  - ${file(outputs.yml)}
+
+plugins:
+  - serverless-deployment-bucket
+  - '@serverless/safeguards-plugin'
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  safeguards:
+    - safeguard: framework-version
+      enforcementLevel: warning
+      config: ${self:frameworkVersion}
+    - safeguard: allowed-regions
+      enforcementLevel: error
+      config:
+        - ${self:provider.region}
+    - safeguard: no-wild-iam-role-statements
+      enforcementLevel: warning
+  servicePrefix: ${self:app}-${self:service}
+  s3:
+    deploymentBucketName:
+      dev: ${self:provider.region}.${self:org}.${self:app}.${self:custom.stage}.deploys
+  rds:
+    engine: mysql
+    arn: !Sub arn:aws:rds:${AWS::Region}:${AWS::AccountId}:db:${Database}
+    database: ${self:app}
+    port: ${env:RDS_PORT}
+    snapshotArn: ${env:RDS_SNAPSHOT_ARN, ''}
+    masterUsername: ${env:RDS_MASTER_USER}
+    appUsername: ${env:RDS_APP_USER}
